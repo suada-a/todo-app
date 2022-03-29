@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block content%}
+    <div class="container text-center">
+        <h1>Tasks</h1>
+        <button class="btn btn-info">Add New Task <span style="font-weight: bold; font-size: 18px;">+</span></button>
+    </div>
+    <table class="table container">
+        <thead>
+            <tr>
+                <th scope="col">Task</th>
+                <th scope="col">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task }}</td>
+                    <td class="options">
+                        <button class="btn" style="background-color: #0dcaf0;"><span><i class="fa-solid fa-pencil" style="color: white;"></i></span></button>
+                        <button class="btn" style="background-color: #18b840;"><span><i class="fa-solid fa-check" style="color: white;"></i></span></button>
+                        <button class="btn" style="background-color: #e01111;"><span><i class="fa-solid fa-trash-can" style="color: white;"></i></span></button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
