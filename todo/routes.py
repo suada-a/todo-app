@@ -1,6 +1,5 @@
-from flask import Flask, render_template
-
-app = Flask(__name__)
+from todo import app
+from flask import render_template
 
 @app.route('/')
 @app.route('/home')
@@ -14,4 +13,3 @@ def register_page():
 @app.route('/login')
 def login_page():
     return render_template('login.html')
-
