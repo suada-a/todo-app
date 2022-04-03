@@ -6,7 +6,7 @@
 {% block content%}
     <div class="container text-center">
         <h1>Tasks</h1>
-        <button class="btn btn-info">Add New Task <span style="font-weight: bold; font-size: 18px;">+</span></button>
+        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModal">Add New Task <span style="font-weight: bold; font-size: 18px;">+</span></button>
     </div>
     <table class="table container">
         <thead>
@@ -28,4 +28,26 @@
             {% endfor %}
         </tbody>
     </table>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Add Task</h4>
+            </div>
+            <div class="modal-body">
+              <form method="POST" class="form-add-task">
+                  {{ add_task_form.hidden_tag() }}
+                  {{ add_task_form.label }}
+                  {{ add_task_form.description(class="form-control", placeholder="Task Description") }}
+                <div class="btn-options">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    {{ add_task_form.submit(class="btn btn-info") }}
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
 {% endblock %}
