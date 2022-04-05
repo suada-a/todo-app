@@ -14,3 +14,7 @@ class EditTaskForm(FlaskForm):
 class CompleteTaskForm(FlaskForm):
     task_id = IntegerField()
     submit = SubmitField(label='Submit')
+
+class DeleteTaskForm(FlaskForm):
+    task_id = IntegerField()
+    submit = SubmitField(label='Delete')
