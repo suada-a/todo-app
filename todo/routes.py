@@ -9,15 +9,17 @@ from todo import db
 def home_page():
     add_task_form = AddTaskForm()
     edit_task_form = EditTaskForm()
+    complete_task_form = CompleteTaskForm()
     
     tasks = Task.query.all()
-    return render_template('index.html', add_task_form=add_task_form, 
-    edit_task_form=edit_task_form, tasks=tasks)
+    return render_template('index.html', add_task_form=add_task_form, edit_task_form=edit_task_form,
+    complete_task_form=complete_task_form, tasks=tasks)
 
 @app.route('/add', methods=['POST'])
 def add():
     add_task_form = AddTaskForm()
     edit_task_form = EditTaskForm()
+    complete_task_form = CompleteTaskForm()
 
     if add_task_form.validate_on_submit():
         new_task = Task(description=add_task_form.description.data)
@@ -25,12 +27,14 @@ def add():
         db.session.commit()
         return redirect(url_for('home_page'))
     
-    return render_template('index.html', add_task_form=add_task_form, edit_task_form=edit_task_form)
+    return render_template('index.html', add_task_form=add_task_form, edit_task_form=edit_task_form,
+    complete_task_form=complete_task_form)
 
 @app.route('/edit', methods=['POST'])
 def edit():
     add_task_form = AddTaskForm()
     edit_task_form = EditTaskForm()
+    complete_task_form = CompleteTaskForm()
 
     if edit_task_form.validate_on_submit():
         new_description = edit_task_form.description.data
@@ -41,7 +45,26 @@ def edit():
 
         return redirect(url_for('home_page')) 
     
-    return render_template('index.html', add_task_form=add_task_form, edit_task_form=edit_task_form)
+    return render_template('index.html', add_task_form=add_task_form, edit_task_form=edit_task_form,
+    complete_task_form=complete_task_form)
+
+@app.route('/complete', methods=['GET', 'POST'])
+def complete():
+    add_task_form = AddTaskForm()
+    edit_task_form = EditTaskForm()
+    complete_task_form = CompleteTaskForm()
+
+    if complete_task_form.validate_on_submit():
+        current_task_id = complete_task_form.task_id.data
+        current_task = Task.query.get(current_task_id)
+        current_task.complete = True
+        db.session.commit()
+
+        tasks = Task.query.all()
+        return render_template('index.html', add_task_form=add_task_form, edit_task_form=edit_task_form,
+        complete_task_form=complete_task_form, tasks=tasks)
+
+    return redirect(url_for('home_page'))
 
 @app.route('/register')
 def register_page():

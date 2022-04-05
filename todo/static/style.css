@@ -32,14 +32,23 @@
     background-color: #149233;
 }
 
-.delete {
+.complete-task {
+    text-align: center;
+    font-size: 20px;
+}
+
+.delete, .delete-2 {
     color: white;
     background-color: #e01111;
 }
 
-.delete:hover {
+.delete:hover, .delete-2:hover {
     color: white;
     background-color: #be1010;
+}
+
+.delete-2 {
+    margin-left: 91px;
 }
 
 .edit {
@@ -89,6 +98,7 @@ h1 {
 
 .options {
     width: 22%;
+    white-space: nowrap;
 }
 
 .table {
