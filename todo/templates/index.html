@@ -3,10 +3,31 @@
     Home Page
 {% endblock %}
 
-{% block content%}
+{% block content %}
     <div class="container text-center">
         <h1>Tasks</h1>
-        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModal">Add New Task <span style="font-weight: bold; font-size: 18px;">+</span></button>
+        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#task-modal">Add New Task <span style="font-weight: bold; font-size: 18px;">+</span></button>
+        <!-- Modal for adding tasks-->
+        <div id="task-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Task</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ url_for('add') }}" method="POST" class="form-add-task">
+                            {{ add_task_form.hidden_tag() }}
+                            {{ add_task_form.label }}
+                            {{ add_task_form.description(class="form-control", placeholder="Task Description") }}
+                            <div class="btn-options">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                {{ add_task_form.submit(class="btn btn-info") }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <table class="table container">
         <thead>
@@ -20,34 +41,34 @@
                 <tr>
                     <td>{{ task }}</td>
                     <td class="options">
-                        <button class="btn" style="background-color: #0dcaf0;"><span><i class="fa-solid fa-pencil" style="color: white;"></i></span></button>
-                        <button class="btn" style="background-color: #18b840;"><span><i class="fa-solid fa-check" style="color: white;"></i></span></button>
-                        <button class="btn" style="background-color: #e01111;"><span><i class="fa-solid fa-trash-can" style="color: white;"></i></span></button>
+                        <button type="button" class="btn edit" data-bs-toggle="modal" data-bs-target="#edit"><span><i class="fa-solid fa-pencil"></i></span></button>
+                        <!--Modal for Editing Tasks-->
+                        <div id="edit" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Edit Task</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ url_for('edit') }}" method="POST" class="form-edit-task">
+                                            {{ edit_task_form.hidden_tag() }}
+                                            {{ edit_task_form.label }}
+                                            {{ edit_task_form.description(class="form-control", placeholder="Task Description") }}
+                                            {{ edit_task_form.task_id(value=task.id, type="hidden")}} 
+                                            <div class="btn-options">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                {{ edit_task_form.submit(class="btn btn-info") }}
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn complete"><span><i class="fa-solid fa-check"></i></span></button>
+                        <button class="btn delete"><span><i class="fa-solid fa-trash-can"></i></span></button>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-      
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Add Task</h4>
-            </div>
-            <div class="modal-body">
-              <form method="POST" class="form-add-task">
-                  {{ add_task_form.hidden_tag() }}
-                  {{ add_task_form.label }}
-                  {{ add_task_form.description(class="form-control", placeholder="Task Description") }}
-                <div class="btn-options">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    {{ add_task_form.submit(class="btn btn-info") }}
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-    </div>
 {% endblock %}

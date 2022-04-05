@@ -7,7 +7,7 @@
 
 .btn-info:hover {
     color: white;
-    background-color: #0eb8da;
+    background-color: #0fafcf;
 }
 
 .btn-options {
@@ -20,6 +20,48 @@
 .btn-secondary {
     font-weight: bold;
     margin-right: 10px;
+}
+
+.complete {
+    color: white;
+    background-color: #18b840;
+}
+
+.complete:hover {
+    color: white;
+    background-color: #149233;
+}
+
+.delete {
+    color: white;
+    background-color: #e01111;
+}
+
+.delete:hover {
+    color: white;
+    background-color: #be1010;
+}
+
+.edit {
+    color: white;
+    background-color: #0dcaf0;
+}
+
+.edit:hover {
+    color: white;
+    background-color: #0fafcf;
+}
+
+.fa-solid .fa-pencil{
+    color: white;
+}
+
+.fa-solid .fa-check {
+    color: white;
+}
+
+.fa-solid .fa-trash-can {
+    color: white;
 }
 
 h1 {
