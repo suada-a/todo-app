@@ -1,3 +1,16 @@
+.auth {
+    background-color: #d5f1f7;
+    border-style: outset;
+    padding: 2%;
+    width: 25%;
+}
+
+@media screen and (max-width: 600px) {
+    .auth {
+        width: 80%;
+    }
+}
+
 .btn-info {
     color: white;
     font-weight: bold;
@@ -46,6 +59,12 @@
     margin-left: 91px;
 }
 
+#description {
+    text-align: start;
+    width: 80%;
+    padding-bottom: 10%;
+}
+
 .edit {
     color: white;
     background-color: #0dcaf0;
@@ -68,13 +87,25 @@
     color: white;
 }
 
+.form-control {
+    margin-bottom: 6%;
+}
+
 h1 {
     text-align: center;
-    margin: 40px 0px 40px 0px;
+    margin: 6% 0% 3% 0%;
 }
+
+/* .modal-content {
+    width: 80%
+} */
 
 .modal-header {
     justify-content: center;
+}
+
+.msg-alert {
+    text-align: center;
 }
 
 .navbar-dark {
@@ -96,11 +127,32 @@ h1 {
     white-space: nowrap;
 }
 
+.redirect {
+    display: flex;
+    justify-content: center;
+}
+
+.submit {
+    display: flex;
+    justify-content: end;
+    margin: 8% 0 8% 0
+}
+
 .table {
     width: 40%;
+}
+
+.task-form {
+    text-align: center;
 }
 
 .task-popup {
     text-align: center;
     font-size: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .task-popup {
+        font-size: 16px;
+    }
 }

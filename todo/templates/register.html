@@ -3,6 +3,19 @@
     Register Page
 {% endblock %}
 
-{% block content%}
-
+{% block content %}
+    <h1>Register</h1>
+    <div class="container auth">
+        <form method="POST">
+            {{ form.hidden_tag() }} 
+            {{ form.username(class="form-control", placeholder="Username") }}
+            {{ form.email_address(class="form-control", placeholder="Email Address") }}
+            {{ form.password(class="form-control", placeholder="Password") }}
+            {{ form.confirm_password(class="form-control", placeholder="Confirm Password") }}
+            <div class="submit">
+                {{ form.submit(class="btn btn-info") }}
+            </div>
+            <a href="{{ url_for('login_page')}}" class="redirect">Have an account? Login</a>
+        </form>    
+    </div>
 {% endblock %}
