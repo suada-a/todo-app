@@ -1,5 +1,5 @@
 from todo import app
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, request
 from todo.models import Task, User
 from todo.forms import *
 from todo import db
@@ -54,24 +54,25 @@ def edit():
     return render_template('index.html', add_task_form=add_task_form, edit_task_form=edit_task_form,
     complete_task_form=complete_task_form, delete_task_form=delete_task_form)
 
-@app.route('/complete', methods=['POST'])
+@app.route('/complete', methods=['GET', 'POST'])
 def complete():
     add_task_form = AddTaskForm()
     edit_task_form = EditTaskForm()
     complete_task_form = CompleteTaskForm()
     delete_task_form = DeleteTaskForm()
 
-    if complete_task_form.validate_on_submit():
-        current_task_id = complete_task_form.task_id.data
-        current_task = Task.query.get(current_task_id)
-        current_task.complete = True
-        db.session.commit()
-
+    if request.method == 'POST':
+        if complete_task_form.validate_on_submit():
+            current_task_id = complete_task_form.task_id.data
+            current_task = Task.query.get(current_task_id)
+            current_task.complete = True
+            db.session.commit()
+            return redirect(url_for('home_page'))
+            
+    if request.method == 'GET':
         tasks = Task.query.all()
         return render_template('index.html', add_task_form=add_task_form, edit_task_form=edit_task_form,
         complete_task_form=complete_task_form, delete_task_form=delete_task_form, tasks=tasks)
-
-    return redirect(url_for('home_page'))
 
 @app.route('/delete', methods=['POST'])
 def delete():
