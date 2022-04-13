@@ -3,23 +3,21 @@ from flask import render_template, redirect, url_for, flash
 from todo.models import Task, User
 from todo.forms import *
 from todo import db
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_required, login_user, logout_user, current_user
 
 @app.route('/')
 @app.route('/home', methods=['GET', 'POST'])
+@login_required
 def home_page():
-    if current_user.is_authenticated:
-        add_task_form = AddTaskForm()
-        edit_task_form = EditTaskForm()
-        complete_task_form = CompleteTaskForm()
-        delete_task_form = DeleteTaskForm()
-        
-        tasks = Task.query.filter_by(user_id = current_user.get_id())
+    add_task_form = AddTaskForm()
+    edit_task_form = EditTaskForm()
+    complete_task_form = CompleteTaskForm()
+    delete_task_form = DeleteTaskForm()
+    
+    tasks = Task.query.filter_by(user_id = current_user.get_id())
 
-        return render_template('index.html', add_task_form=add_task_form, edit_task_form=edit_task_form,
-        complete_task_form=complete_task_form, delete_task_form=delete_task_form, tasks=tasks)
-    else:
-        return redirect(url_for('login_page'))
+    return render_template('index.html', add_task_form=add_task_form, edit_task_form=edit_task_form,
+    complete_task_form=complete_task_form, delete_task_form=delete_task_form, tasks=tasks)
 
 @app.route('/add', methods=['POST'])
 def add():

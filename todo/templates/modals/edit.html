@@ -1,0 +1,22 @@
+<!--Modal for editing tasks-->
+<div id="edit" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Task</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('edit') }}" method="POST" class="task-form">
+                    {{ edit_task_form.hidden_tag() }}
+                    {{ edit_task_form.label }}
+                    {{ edit_task_form.description(placeholder="Task Description") }}
+                    {{ edit_task_form.task_id(value=task.id, type="hidden") }} 
+                    <div class="btn-options">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        {{ edit_task_form.submit(class="btn btn-info") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

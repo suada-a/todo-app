@@ -1,0 +1,22 @@
+<!--Modal for deleting tasks-->
+<div id="delete" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Task</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('delete') }}" method="POST" class="form-delete-task">
+                    {{ delete_task_form.hidden_tag() }}
+                    {{ delete_task_form.label }}
+                    {{ delete_task_form.task_id(value=task.id, type="hidden") }} 
+                    <p class="task-popup">Would you like delete this task?</p>
+                    <div class="btn-options">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        {{ delete_task_form.submit(class="btn btn-info") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
