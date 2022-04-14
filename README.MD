@@ -24,3 +24,7 @@ $ python run.py
 ```
 ## License
 The project is licensed under the MIT license - see [LICENSE.txt](./LICENSE.txt)
+
+## Demonstration
+
+![Rock paper scissors demonstration](https://media.giphy.com/media/nUTFAhxD14O31emyuQ/giphy.gif)
