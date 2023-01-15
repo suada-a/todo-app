@@ -26,5 +26,5 @@ The project is licensed under the MIT license - see [LICENSE.txt](./LICENSE.txt)
 
 ## Demonstration
 
-
-![Rock paper scissors demonstration](https://media.giphy.com/media/nUTFAhxD14O31emyuQ/giphy.gif)
+![todo1](https://user-images.githubusercontent.com/36940887/212554156-00f33f35-5e2b-44e4-a763-7f6c79bc7318.JPG)
+![todo2](https://user-images.githubusercontent.com/36940887/212554157-75eeef7e-5f65-44a1-addd-9755b0cbcf0c.JPG)
